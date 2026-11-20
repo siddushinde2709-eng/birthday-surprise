@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Better Half 💗</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Georgia, serif;
+    text-align: center;
+    color: #984667;
+    background: linear-gradient(135deg, #ffe0ec, #fff5f8, #f9dce9);
+    overflow-x: hidden;
+}
+
+.page {
+    display: none;
+    min-height: 100vh;
+    padding: 30px 18px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.page.active {
+    display: flex;
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    color: #d65f91;
+    font-size: 2rem;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.cover {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 22px;
+    box-shadow: 0 8px 25px #c96b9366;
+    animation: gentleZoom 4s infinite alternate;
+}
+
+@keyframes gentleZoom {
+    to {
+        transform: scale(1.025);
+    }
+}
+
+button {
+    background: #e987b1;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 15px 26px;
+    margin: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px #c96b9344;
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+.letter {
+    background: #fffafd;
+    border: 2px solid #f3c2d6;
+    border-radius: 20px;
+    padding: 28px 22px;
+    max-width: 470px;
+    width: 100%;
+    box-shadow: 0 8px 25px #c96b9344;
+    animation: fadeIn 1s ease;
+}
+
+.letter p {
+    text-align: left;
+    white-space: pre-line;
+}
+
+.letter .signature {
+    text-align: center;
+}
+
+.final-message {
+    font-size: 1.4rem;
+    color: #d65f91;
+}
+
+.heart {
+    position: fixed;
+    bottom: -30px;
+    pointer-events: none;
+    z-index: 5;
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.footer {
+    color: #c46b91;
+    font-size: 0.9rem;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1: COVER -->
+
+<section class="page active" id="page1">
+
+    <h1>For My Better Half 💗</h1>
+
+    <img
+        src="Wishes%201.jpg"
+        class="cover"
+        alt="Birthday surprise"
+    >
+
+    <p>A little surprise made with lots of love 🎀</p>
+
+    <button onclick="showPage(2)">
+        Open Your Surprise 💝
+    </button>
+
+    <div class="footer">
+        Made with love, just for you 🌷
+    </div>
+
+</section>
+
+
+<!-- PAGE 2: PERSONAL LETTER -->
+
+<section class="page" id="page2">
+
+    <div class="letter">
+
+        <h1>My Special Letter 🌷</h1>
+
+        <p>
+You have always been special to me... 🥹💗
+
+And I want to keep you happy, from the bottom of my heart. 🫶🏻🌷
+
+May you live your life with lots of happiness, prosperity, and endless beautiful moments. 🌸✨🦋
+
+You are like the best part of my life... ❤️‍🩹💕
+
+And I hope you always keep smiling. 🥰🎀
+        </p>
+
+        <p class="signature">
+            With lots of love 💗
+        </p>
+
+    </div>
+
+    <button onclick="showPage(1)">
+        ← Back
+    </button>
+
+    <button onclick="showPage(3)">
+        Next Surprise ✨
+    </button>
+
+</section>
+
+
+<!-- PAGE 3: FINAL WISH -->
+
+<section class="page" id="page3">
+
+    <h1>Happiest Birthday! 🎂</h1>
+
+    <p class="final-message">
+        May your smile always shine brighter than the stars! 🌟
+    </p>
+
+    <p>
+        May every day bring you happiness,
+        beautiful memories and endless reasons to smile. 💕
+    </p>
+
+    <h1>🎀 💗 🌷 🦋</h1>
+
+    <p>
+        Stay happy and keep shining! ✨
+    </p>
+
+    <p>
+        You deserve all the beautiful things in life. 💝
+    </p>
+
+    <button onclick="showPage(2)">
+        ← Back to Letter
+    </button>
+
+    <button onclick="showPage(1)">
+        Start Again 💌
+    </button>
+
+</section>
+
+
+<script>
+
+// PAGE NAVIGATION
+
+function showPage(number) {
+
+    document.querySelectorAll(".page").forEach(function(page) {
+        page.classList.remove("active");
+    });
+
+    document.getElementById("page" + number)
+        .classList.add("active");
+
+    window.scrollTo(0, 0);
+}
+
+
+// FLOATING HEART ANIMATION
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    const decorations = [
+        "💗", "💕", "🎀", "🌸", "✨", "🦋"
+    ];
+
+    heart.innerText =
+        decorations[Math.floor(Math.random() * decorations.length)];
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    heart.style.fontSize =
+        (16 + Math.random() * 18) + "px";
+
+    heart.style.animationDuration =
+        (5 + Math.random() * 4) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(function() {
+        heart.remove();
+    }, 10000);
+}
+
+setInterval(createHeart, 700);
+
+</script>
+
+</body>
+</html>
